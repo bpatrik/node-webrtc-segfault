@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Udp test page</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <style>
+    body {
+      padding-top: 100px;
+    }
+
+    .btn {
+      border-radius: 0;
+      font-size: 20px;
+    }
+
+    .btn-lg {
+      font-size: 40px;
+      font-weight: bold;
+      padding: 40px;
+    }
+
+
+  </style>
+</head>
+
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+              aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Proxy:UDP test </a>
+    </div>
+    <div id="navbar" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="index.html">Test</a></li>
+      </ul>
+    </div>
+    <!--/.nav-collapse -->
+  </div>
+</nav>
+
+<div class="container" id="content">
+  <div class="raw">
+    <div class="btn btn-primary btn-lg" id="startBtn">
+      Start
+    </div>
+    <div id="progress">
+    progress
+    </div>
+  </div>
+</div>
+
+
+
+<script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.20.19/system.js"
+        integrity="sha256-HCJlhCZ21EKx0Wo6wCF+rbeBHlVlOSJccd4zTQe2TNw=" crossorigin="anonymous"></script>
+
+<script>
+  System.config({
+    map: {
+      "path": "@empty",
+      "crypto": "@empty",
+      "fs": "@empty",
+      "optimist": "@empty",
+      "lz-string": '../../../node_modules/lz-string/libs/lz-string.js',
+      'webrtc-adapter': '../../../node_modules/webrtc-adapter/out/adapter.js',
+      "jquery": "../../../node_modules/jquery/dist/jquery.min.js"
+    },
+    packages: {
+      './../../../': {
+        defaultJSExtensions: 'js'
+      }
+    },
+    transpiler: false,
+    meta: {'*': {authorization: true}}
+  });
+  System.import('./main').then(null, console.error.bind(console));
+</script>
+
+
+</body>
+</html>

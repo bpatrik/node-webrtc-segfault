@@ -1,0 +1,28 @@
+{
+  "name": "node-webrtc-segfault",
+  "version": "1.0.0",
+  "description": "Node WEBRT project segfoult sample test",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "install": "tsc",
+    "start": "node ./src/backend/index.js"
+  },
+  "author": "Patrik J. Braun",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "1.18.2",
+    "express": "4.16.2",
+    "jquery": "^3.3.1",
+    "lodash": "4.17.5",
+    "webrtc-adapter": "6.1.1",
+    "winston": "2.4.0",
+    "wrtc": "0.0.66"
+  },
+  "devDependencies": {
+    "@types/express": "4.11.1",
+    "@types/node": "9.4.6",
+    "@types/winston": "2.3.8",
+    "typescript": "2.7.2"
+  }
+}
