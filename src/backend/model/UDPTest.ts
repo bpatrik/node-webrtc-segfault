@@ -32,9 +32,9 @@ export class UDPTest {
   }
 
   private channelStateChange = (conn: WebRTCConnection, state: WebRTCConnection.States) => {
-    if (state == WebRTCConnection.States.CONNECTED) {
-      this.upload();
-    }
+    /* if (state == WebRTCConnection.States.CONNECTED) {
+       this.upload();
+     }*/
     if (state == WebRTCConnection.States.CLOSED) {
       if (this.connections.indexOf(conn) != -1) {
         this.connections.splice(this.connections.indexOf(conn), 1);
@@ -42,32 +42,5 @@ export class UDPTest {
     }
   };
 
-  static PACKETS = 10000;
-  private upload = () => {
-    this.task.clear();
-
-    for (let i = 0; i < this.connections.length; i++) {
-      if (this.connections[i].State != WebRTCConnection.States.CONNECTED) {
-        continue;
-      }
-
-      while (this.connections[i]['packetID'] < UDPTest.PACKETS) {
-        const uint8 = new Uint8Array(1000);
-        const dw = new DataView(uint8.buffer);
-        dw.setInt32(0, this.connections[i]['packetID']++);
-        this.connections[i].send(uint8.buffer);
-        if (this.connections[i]['packetID'] >= UDPTest.PACKETS) {
-          this.connections[i].close();
-          break;
-        }
-      }
-
-    }
-
-    if (this.connections.length > 0) {
-      this.task.schedule(this.upload, 50);
-    }
-
-  }
 
 }

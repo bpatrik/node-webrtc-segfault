@@ -2,6 +2,7 @@ import {WebRTCConnection} from "../common/webrtc/WebRTCConnection";
 import {SignInResponseDTO} from "../common/dto/SignInDTO";
 import {Log} from "./Log";
 import {ClientRTCFactory} from "./ClientRTCFactory";
+import {UDPTest} from "../backend/model/UDPTest";
 
 declare var $;
 let dataConnection: WebRTCConnection;
@@ -38,6 +39,19 @@ const channelStateChange = (conn: WebRTCConnection, state: WebRTCConnection.Stat
   if (state == WebRTCConnection.States.CLOSED) {
     $("#startBtn").html("Start");
     $("#startBtn").removeAttr("disabled");
+  }
+  if (state == WebRTCConnection.States.CONNECTED) {
+    let counter = 0;
+    while (counter < 10000) {
+      const uint8 = new Uint8Array(1000);
+      const dw = new DataView(uint8.buffer);
+      dw.setInt32(0, counter++);
+      conn.send(uint8.buffer);
+      if (counter >= 10000) {
+        conn.close();
+        break;
+      }
+    }
   }
 };
 
